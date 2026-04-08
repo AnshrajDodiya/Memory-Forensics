@@ -1,8 +1,20 @@
-# CRIDEX Memory Forensics Case Study
+# CRIDEX Memory Analysis
 
 This repository documents a step-by-step memory forensic investigation of the **CRIDEX banking trojan** using Volatility.
 
 The objective of this case study was to identify malicious processes, validate malware artifacts, analyze persistence, and inspect suspicious network activity.
+
+---
+
+## Lab Details
+
+| Field          | Value                                   |
+| -------------- | --------------------------------------- |
+| Malware Sample | Cridex                                  |
+| OS Profile     | WinXPSP2x86 / XP SP3                    |
+| Tool Used      | Volatility 2.6.1                        |
+| Analysis Type  | Memory Forensics                        |
+| Objective      | Malware Detection & Artifact Extraction |
 
 ---
 
