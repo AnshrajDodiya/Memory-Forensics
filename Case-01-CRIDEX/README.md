@@ -52,17 +52,17 @@ After identifying the suspicious process `reader_sl.exe` (PID: **1640**), the ex
 
 This allowed further static validation of the in-memory malicious PE.
 
-![Process_Dumping_Of_Malicious_PE](07_process_dump_malicious_pe.png)
+![Process_Dumping_Of_Malicious_PE](screenshots/07_process_dump_malicious_pe.png)
 
 The SHA256 hash of the dumped executable was then calculated to ensure file integrity and to correlate the sample with known malware signatures.
 
-![Hash_Calculation](08_sha256_hash_calculation.png)
+![Hash_Calculation](screenshots/08_sha256_hash_calculation.png)
 
 The calculated hash was validated using VirusTotal.
 
 The result showed **28/71 detections**, confirming the sample as malicious and aligning with CRIDEX banking trojan indicators.
 
-![VirusTotal_Verification](09_virustotal_hash_verification.png)
+![VirusTotal_Verification](screenshots/09_virustotal_hash_verification.png)
 
 ---
 
@@ -72,20 +72,20 @@ To understand the malware’s behavior and intent, string analysis was performed
 
 The first set of strings revealed multiple registry-related API calls such as `RegOpenKeyA`, `RegQueryValueExA`, and `RegCloseKey`, indicating interaction with Windows Registry keys and suggesting possible persistence mechanisms.
 
-![Registry_API_Calls](10_strings_registry_api_calls.png)
+![Registry_API_Calls](screenshots/10_strings_registry_api_calls.png)
 
 
 Further string analysis revealed the suspicious filename `KB00207877.exe`, which was later correlated with the persistence artifact found in the registry.
 
-![Suspicious_FileName](14_strings_suspicious_filename.png)
+![Suspicious_FileName](screenshots/14_strings_suspicious_filename.png)
 
 Network-related string artifacts exposed suspicious external IP addresses and URLs communicating over port **8080**, strongly indicating command-and-control (C2) communication.
 
-![C2_Artifacts](15_strings_c2_ip_artifacts.png)
+![C2_Artifacts](screenshots/15_strings_c2_ip_artifacts.png)
 
 Finally, multiple banking-related strings and financial institution references were identified, which strongly supports the classification of the sample as a **banking trojan** focused on credential theft.
 
-![Few_Banking_Targets](16_strings_banking_targets.png)
+![Few_Banking_Targets](screenshots/16_strings_banking_targets.png)
 
 ---
 
@@ -97,12 +97,12 @@ The extracted hive was then parsed using Volatility’s `printkey` plugin to ins
 
 This confirmed the presence of an autorun registry entry referencing the suspicious executable `KB00207877.exe`.
 
-![Extraction_Of_RunKey](11_registry_run_key_volatility_printkey.png.png)
+![Extraction_Of_RunKey](screenshots/11_registry_run_key_volatility_printkey.png.png)
 
 
 The user registry hive (`NTUSER.DAT`) was first extracted from the memory image using Volatility’s `dumpregistry` plugin for offline analysis.
 
-![Registry_Hive_Dump](12_registry_hive_dump.png)
+![Registry_Hive_Dump](screenshots/12_registry_hive_dump.png)
 
 To further validate the artifact, the dumped hive was opened in Registry Explorer.
 
@@ -114,7 +114,7 @@ C:\Documents and Settings\Robert\Application Data\KB00207877.exe
 
 This confirms the malware establishes persistence at user logon.
 
-![Registry_Explorer_Analysis](13_registry_run_key_registry_explorer.png)
+![Registry_Explorer_Analysis](screenshots/13_registry_run_key_registry_explorer.png)
 
 
 ---
@@ -125,7 +125,7 @@ To investigate potential command-and-control (C2) communication, network artifac
 
 The `connscan` output revealed multiple suspicious outbound connections to external IP addresses over port **8080**, which is commonly used by malware for C2 traffic.
 
-![Connscan_Analysis](03_network_connscan_analysis.png)
+![Connscan_Analysis](screenshots/03_network_connscan_analysis.png)
 
 The identified external connections included:
 
@@ -136,7 +136,7 @@ The identified external connections included:
 
 Additional socket analysis further confirmed active network communication from the infected system.
 
-![Sockets_Analysis](04_open_sockets_analysis.png)
+![Sockets_Analysis](screenshots/04_open_sockets_analysis.png)
 
 These findings strongly indicate that the CRIDEX malware was attempting to communicate with external infrastructure, likely for data exfiltration, tasking, or credential theft operations.
 

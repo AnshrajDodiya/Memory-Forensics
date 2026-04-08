@@ -54,7 +54,7 @@ The first step was identifying the correct memory profile.
 - Service Pack: **`SP3`**
 - System time successfully recovered
 
-![Memory Image Profile](01_image_profile_identification.png)
+![Memory Image Profile](screenshots/01_image_profile_identification.png)
 
 ---
 
@@ -64,7 +64,7 @@ During process enumeration, multiple suspicious `lsass.exe` instances were ident
 
 This immediately raised suspicion because legitimate Windows XP systems should typically have only one valid LSASS process.
 
-![Process_Tree_Analysis](02_process_tree_analysis.png)
+![Process_Tree_Analysis](screenshots/02_process_tree_analysis.png)
 
 ---
 
@@ -78,9 +78,9 @@ The command lines pointed to legitimate paths:
 
 This indicates **process masquerading / process injection**, where malware hides behind legitimate process names.
 
-![Identifying_Command_Line_Argument](03_lsass_commandline_validation.png)
+![Identifying_Command_Line_Argument](screenshots/03_lsass_commandline_validation.png)
 
-![SANS_Evil_Hunt_Verification](04_legitimate_lsass_baseline_reference.png)
+![SANS_Evil_Hunt_Verification](screenshots/04_legitimate_lsass_baseline_reference.png)
 
 ---
 
@@ -97,7 +97,7 @@ These ports are commonly used for **IPsec / IKE communication** and are generall
 
 After correlation with process context and system behavior, these connections were assessed as **legitimate network activity rather than malicious communication**.
 
-![Socket_Analysis](06_socket_analysis_ports_500_4500.png)
+![Socket_Analysis](screenshots/06_socket_analysis_ports_500_4500.png)
 
 ---
 
@@ -114,11 +114,11 @@ This helped differentiate legitimate vs injected processes.
 
 The Legitimate lsass.exe loads more DLL Files than Malicious lsass.exe
 
-![DLL_Count](07_dll_count_comparison_lsass_instances.png)
+![DLL_Count](screenshots/07_dll_count_comparison_lsass_instances.png)
 
-![Netlogon_DLL_Cross_Verification](08_netlogon_dll_validation.png)
+![Netlogon_DLL_Cross_Verification](screenshots/08_netlogon_dll_validation.png)
 
-![Kerberos_DLL_Cross_Verification](09_kerberos_dll_validation.png)
+![Kerberos_DLL_Cross_Verification](screenshots/09_kerberos_dll_validation.png)
 
 ---
 
@@ -140,9 +140,9 @@ This is a strong sign of:
 - unpacked payload
 - in-memory PE loader
 
-![Malicious_Memory_Region_of_PID_868](10_malfind_lsass_pid_868.png)
+![Malicious_Memory_Region_of_PID_868](screenshots/10_malfind_lsass_pid_868.png)
 
-![Malicious_Memory_Region_of_PID_1928](11_malfind_lsass_pid_1928.png)
+![Malicious_Memory_Region_of_PID_1928](screenshots/11_malfind_lsass_pid_1928.png)
 
 ---
 
@@ -152,7 +152,7 @@ This is a strong sign of:
 
 Suspicious processes were dumped for offline malware verification.
 
-![Process_Dumping_Of_Suspected_Processes|697](12_process_dump_extraction.png)
+![Process_Dumping_Of_Suspected_Processes](screenshots/12_process_dump_extraction.png)
 
 ---
 
@@ -170,13 +170,13 @@ Result:
 
 This strongly confirms malicious activity.
 
-![MD5_Hashes](13_extracted_malware_artifacts_hashes.png)
+![MD5_Hashes](screenshots/13_extracted_malware_artifacts_hashes.png)
 
-![Injected_Explorer.exe](14_virustotal_explorer_dump.png)
+![Injected_Explorer.exe](screenshots/14_virustotal_explorer_dump.png)
 
-![Stuxnet_1](15_virustotal_lsass_1928_stuxnet.png)
+![Stuxnet_1](screenshots/15_virustotal_lsass_1928_stuxnet.png)
 
-![Stuxnet_2](16_virustotal_lsass_868_stuxnet.png)
+![Stuxnet_2](screenshots/16_virustotal_lsass_868_stuxnet.png)
 
 ---
 
