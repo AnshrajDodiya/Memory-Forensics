@@ -162,3 +162,9 @@ Key evidence includes:
     
 
 Based on the combined process, persistence, and network findings, the sample is classified as a **banking trojan with credential theft and command-and-control capabilities**.
+
+---
+
+## Author
+
+### Anshraj Dodiya

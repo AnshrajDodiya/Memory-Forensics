@@ -201,3 +201,7 @@ This case study demonstrates how malware can:
 - evade basic static detection
 
 ---
+
+## Author
+
+### Anshraj Dodiya
