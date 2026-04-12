@@ -1,6 +1,6 @@
 # Stuxnet Memory Forensics Analysis
 
-> A DFIR-style memory forensics case study focused on investigating a Stuxnet-infected Windows memory image using industry-standard forensic techniques and Volatility-based analysis.
+> 	A DFIR-style memory forensics case study focused on investigating a Stuxnet-infected Windows memory image using industry-standard forensic techniques and Volatility-based analysis.
 
 ---
 

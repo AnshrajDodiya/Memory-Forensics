@@ -1,5 +1,5 @@
 
-# Findings Report — Stuxnet Memory Forensics Analysis
+# Technical Findings — Case 02 STUXNET
 
 This document summarizes the key forensic findings identified during the analysis of the **Stuxnet-infected Windows XP SP3 memory image**.
 
